@@ -158,7 +158,11 @@ const Dashboard: React.FC = () => {
 
   return (
     <div>
-      <h1>온실가스 배출량 대시보드</h1>
+      <h1 style={{ fontSize: "24px" }}>온실가스 배출량 대시보드</h1>
+      <a href="/sample.xlsx" download>
+        예시 엑셀 파일 다운로드
+      </a>
+      <p>위 형식에 맞춰 엑셀 파일을 작성한 후 업로드하세요.</p>
       <input type="file" accept=".xlsx,.xls" onChange={handleFileChange} />
 
       {lineData.labels.length > 0 && (
@@ -174,6 +178,9 @@ const Dashboard: React.FC = () => {
                 title: {
                   display: true,
                   text: "Scope별 배출량(tCO2eq)",
+                  font: {
+                    size: 18,
+                  },
                 },
               },
               scales: {
@@ -206,6 +213,9 @@ const Dashboard: React.FC = () => {
                 title: {
                   display: true,
                   text: "영역별 배출량(tCO2eq)",
+                  font: {
+                    size: 18,
+                  },
                 },
               },
               scales: {
