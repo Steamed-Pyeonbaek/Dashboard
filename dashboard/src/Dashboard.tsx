@@ -1,22 +1,22 @@
 // src/Dashboard.tsx
 import React, { useState } from "react";
 import * as XLSX from "xlsx";
-import { Line } from "react-chartjs-2";
+import { Line, Pie, Bar } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
-import { Bar } from "react-chartjs-2";
 
 Chart.register(...registerables);
 
 const Dashboard: React.FC = () => {
-  const [lineData, setLineData] = useState<any>({
+  const [totalEmissions, setTotalEmissions] = useState(0);
+  const [pieData, setPieData] = useState<any>({
     labels: [],
     datasets: [],
   });
-
   const [barData, setBarData] = useState<any>({
     labels: [],
     datasets: [],
   });
+  const [categoryData, setCategoryData] = useState<any>([]);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -28,208 +28,101 @@ const Dashboard: React.FC = () => {
         const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
         const jsonData = XLSX.utils.sheet_to_json(firstSheet, { header: 1 });
 
-        // 데이터 확인
-        console.log(jsonData); // 데이터 구조 확인
+        // 데이터 처리 로직...
+        // 여기에서 pieData, barData, categoryData를 설정합니다.
 
-        // 필요한 데이터 추출: 4번째 행부터 시작
-        const dataRows = jsonData.slice(4); // 실제 데이터는 5번째 행부터 시작
-        const years: string[] = [];
-        const scope1: number[] = [];
-        const scope2: number[] = [];
-        const totalEmissions: number[] = [];
-        const energyUsage: number[] = [];
-        const fixedCombustion: number[] = [];
-        const mobileCombustion: number[] = [];
-        const processEmissions: number[] = [];
-        const electricity: number[] = [];
-        const steam: number[] = [];
-
-        dataRows.forEach((row: any) => {
-          if (row[0] && row[2] && row[5]) {
-            // Year, Scope 1, Total Emissions이 존재하는 경우만 추가
-            years.push(row[0]); // Year
-            scope1.push(row[2] || 0); // Scope 1
-            scope2.push(row[5] || 0); // Scope 2
-            totalEmissions.push(row[9] || 0); // Total Emissions
-            energyUsage.push(row[10] || 0);
-
-            // 스택형 바 차트 데이터 추가
-            fixedCombustion.push(row[3] || 0);
-            mobileCombustion.push(row[4] || 0);
-            processEmissions.push(row[6] || 0);
-            electricity.push(row[7] || 0);
-            steam.push(row[8] || 0);
-          }
+        // 예시 데이터 (실제 데이터 처리 로직으로 대체해야 함)
+        setTotalEmissions(68024.49);
+        setPieData({
+          labels: ['Scope 1', 'Scope 2', 'Scope 3'],
+          datasets: [{
+            data: [29386.57, 47920.14, 6177.85],
+            backgroundColor: ['#4CAF50', '#2196F3', '#9C27B0'],
+          }],
         });
-
-        // 연도별 총 배출량 계산
-        const calculatedTotalEmissions = fixedCombustion.map(
-          (val, index) =>
-            val +
-            mobileCombustion[index] +
-            processEmissions[index] +
-            electricity[index] +
-            steam[index]
-        );
-
-        // 퍼센트 계산
-        const fixedCombustionPercent = fixedCombustion.map(
-          (val, index) => (val / calculatedTotalEmissions[index]) * 100
-        );
-        const mobileCombustionPercent = mobileCombustion.map(
-          (val, index) => (val / calculatedTotalEmissions[index]) * 100
-        );
-        const processEmissionsPercent = processEmissions.map(
-          (val, index) => (val / calculatedTotalEmissions[index]) * 100
-        );
-        const electricityPercent = electricity.map(
-          (val, index) => (val / calculatedTotalEmissions[index]) * 100
-        );
-        const steamPercent = steam.map(
-          (val, index) => (val / calculatedTotalEmissions[index]) * 100
-        );
-
-        // 라인 차트 데이터 설정
-        setLineData({
-          labels: years,
-          datasets: [
-            {
-              label: "Scope 1 (간접배출)",
-              data: scope1,
-              borderColor: "rgba(255, 99, 132, 1)",
-              fill: false,
-            },
-            {
-              label: "Scope 2 (직접배출)",
-              data: scope2,
-              borderColor: "rgba(54, 162, 235, 1)",
-              fill: false,
-            },
-            {
-              label: "총 배출량",
-              data: totalEmissions,
-              borderColor: "rgba(75, 192, 192, 1)",
-              fill: false,
-            },
-            {
-              label: "연도별 에너지사용량(TJ)",
-              data: energyUsage,
-              borderColor: "rgba(153, 102, 255, 1)",
-              fill: false,
-            },
-          ],
-        });
-
-        // 스택형 바 차트 데이터 설정
         setBarData({
-          labels: years,
-          datasets: [
-            {
-              label: "고정연소",
-              data: fixedCombustionPercent,
-              backgroundColor: "rgba(255, 99, 132, 0.6)",
-            },
-            {
-              label: "이동연소",
-              data: mobileCombustionPercent,
-              backgroundColor: "rgba(54, 162, 235, 0.6)",
-            },
-            {
-              label: "공정배출",
-              data: processEmissionsPercent,
-              backgroundColor: "rgba(75, 192, 192, 0.6)",
-            },
-            {
-              label: "전력",
-              data: electricityPercent,
-              backgroundColor: "rgba(255, 206, 86, 0.6)",
-            },
-            {
-              label: "스팀",
-              data: steamPercent,
-              backgroundColor: "rgba(153, 102, 255, 0.6)",
-            },
-          ],
+          labels: ['2020', '2021', '2022', '2023', '2024'],
+          datasets: [{
+            data: [100, 90, 70, 80, 60],
+            backgroundColor: '#4CAF50',
+          }],
         });
+        setCategoryData([
+          { name: 'Fixed Combustion', value: '5,176.6 kgCO2e' },
+          { name: 'Mobile Combustion', value: '4,562.2 kgCO2e' },
+          { name: 'Process Emissions', value: '486.5 kgCO2e' },
+          { name: 'Electricity', value: '1,587.7 kgCO2e' },
+          { name: 'Steam', value: '1,176.6 kgCO2e' },
+        ]);
       };
       reader.readAsBinaryString(file);
     }
   };
 
   return (
-    <div>
-      <h1 style={{ fontSize: "24px" }}>온실가스 배출량 대시보드</h1>
+    <div style={{ padding: '20px' }}>
+      <h1 style={{ fontSize: "24px" }}>탄소 배출량 대시보드</h1>
       <a href="/sample.xlsx" download>
         예시 엑셀 파일 다운로드
       </a>
       <p>위 형식에 맞춰 엑셀 파일을 작성한 후 업로드하세요.</p>
       <input type="file" accept=".xlsx,.xls" onChange={handleFileChange} />
 
-      {lineData.labels.length > 0 && (
-        <div>
-          <Line
-            data={lineData}
-            options={{
-              responsive: true,
-              plugins: {
-                legend: {
-                  position: "top" as const,
-                },
-                title: {
-                  display: true,
-                  text: "Scope별 배출량(tCO2eq)",
-                  font: {
-                    size: 18,
+      {totalEmissions > 0 && (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', marginTop: '20px' }}>
+          <div>
+            <h2>Total Carbon Emissions</h2>
+            <h1>{totalEmissions.toLocaleString()} tCO2e</h1>
+          </div>
+          
+          <div style={{ display: 'flex', gap: '20px' }}>
+            <div style={{ width: '50%' }}>
+              <Pie
+                data={pieData}
+                options={{
+                  responsive: true,
+                  plugins: {
+                    legend: {
+                      position: 'right',
+                    },
                   },
-                },
-              },
-              scales: {
-                y: {
-                  beginAtZero: true,
-                  title: {
-                    display: true,
-                    text: "배출량 (tCO2eq)",
+                }}
+              />
+            </div>
+            <div style={{ width: '50%' }}>
+              <h3>Annual Carbon Emissions Statistics</h3>
+              <p>Current reduction rate of 34%</p>
+              <p>Cut by 60% by 2030</p>
+              <Bar
+                data={barData}
+                options={{
+                  responsive: true,
+                  scales: {
+                    y: {
+                      beginAtZero: true,
+                    },
                   },
-                },
-              },
-            }}
-          />
-        </div>
-      )}
+                  plugins: {
+                    legend: {
+                      display: false,
+                    },
+                  },
+                }}
+              />
+            </div>
+          </div>
 
-      {barData.labels.length > 0 && (
-        <div>
-          <Bar
-            data={{
-              labels: barData.labels,
-              datasets: barData.datasets,
-            }}
-            options={{
-              responsive: true,
-              plugins: {
-                legend: {
-                  position: "top" as const,
-                },
-                title: {
-                  display: true,
-                  text: "영역별 배출량(tCO2eq)",
-                  font: {
-                    size: 18,
-                  },
-                },
-              },
-              scales: {
-                y: {
-                  beginAtZero: true,
-                  max: 100,
-                  title: {
-                    display: true,
-                    text: "Percentage (%)",
-                  },
-                },
-              },
-            }}
-          />
+          <div>
+            <h3>Category</h3>
+            <ul style={{ listStyle: 'none', padding: 0 }}>
+              {categoryData.map((item: any, index: number) => (
+                <li key={index} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
+                  <span>{item.name}</span>
+                  <span>{item.value}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       )}
     </div>
