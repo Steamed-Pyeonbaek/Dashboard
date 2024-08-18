@@ -28,15 +28,70 @@ const Dashboard: React.FC = () => {
         const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
         const jsonData = XLSX.utils.sheet_to_json(firstSheet, { header: 1 });
 
-        // 데이터 처리 로직...
-        // 여기에서 pieData, barData, categoryData를 설정합니다.
+        // 필요한 데이터 추출: 4번째 행부터 시작
+        const dataRows = jsonData.slice(4); // 실제 데이터는 5번째 행부터 시작
+        const years: string[] = [];
+        const scope1: number[] = [];
+        const scope2: number[] = [];
+        const scope3: number[] = [];
+        const totalEmissions: number[] = [];
+        const fixedCombustion: number[] = [];
+        const mobileCombustion: number[] = [];
+        const processEmissions: number[] = [];
+        const electricity: number[] = [];
+        const steam: number[] = [];
+
+        dataRows.forEach((row: any) => {
+          if (row[0] && row[2] && row[5] && row[8] && row[9]) {
+            // Year, Scope 1, Total Emissions이 존재하는 경우만 추가
+            years.push(row[0]); // Year
+            scope1.push(row[2] || 0); // Scope 1
+            scope2.push(row[5] || 0); // Scope 2
+            scope3.push(row[8] || 0); // Scope 3
+            totalEmissions.push(row[9] || 0); // Total Emissions
+
+            // 스택형 바 차트 데이터 추가
+            fixedCombustion.push(row[3] || 0);
+            mobileCombustion.push(row[4] || 0);
+            processEmissions.push(row[6] || 0);
+            electricity.push(row[7] || 0);
+            steam.push(row[8] || 0);
+          }
+        });
+
+        // 연도별 총 배출량 계산
+        const calculatedTotalEmissions = fixedCombustion.map(
+          (val, index) =>
+            val +
+            mobileCombustion[index] +
+            processEmissions[index] +
+            electricity[index] +
+            steam[index]
+        );
+
+        // 퍼센트 계산
+        const fixedCombustionPercent = fixedCombustion.map(
+          (val, index) => (val / calculatedTotalEmissions[index]) * 100
+        );
+        const mobileCombustionPercent = mobileCombustion.map(
+          (val, index) => (val / calculatedTotalEmissions[index]) * 100
+        );
+        const processEmissionsPercent = processEmissions.map(
+          (val, index) => (val / calculatedTotalEmissions[index]) * 100
+        );
+        const electricityPercent = electricity.map(
+          (val, index) => (val / calculatedTotalEmissions[index]) * 100
+        );
+        const steamPercent = steam.map(
+          (val, index) => (val / calculatedTotalEmissions[index]) * 100
+        );
 
         // 예시 데이터 (실제 데이터 처리 로직으로 대체해야 함)
         setTotalEmissions(68024.49);
         setPieData({
           labels: ['Scope 1', 'Scope 2', 'Scope 3'],
           datasets: [{
-            data: [29386.57, 47920.14, 6177.85],
+            data: [scope1, scope2, scope3],
             backgroundColor: ['#4CAF50', '#2196F3', '#9C27B0'],
           }],
         });
@@ -48,11 +103,11 @@ const Dashboard: React.FC = () => {
           }],
         });
         setCategoryData([
-          { name: 'Fixed Combustion', value: '5,176.6 kgCO2e' },
-          { name: 'Mobile Combustion', value: '4,562.2 kgCO2e' },
-          { name: 'Process Emissions', value: '486.5 kgCO2e' },
-          { name: 'Electricity', value: '1,587.7 kgCO2e' },
-          { name: 'Steam', value: '1,176.6 kgCO2e' },
+          { name: 'Fixed Combustion', value: fixedCombustionPercent },
+          { name: 'Mobile Combustion', value: mobileCombustionPercent },
+          { name: 'Process Emissions', value: processEmissionsPercent },
+          { name: 'Electricity', value: electricityPercent },
+          { name: 'Steam', value: steamPercent },
         ]);
       };
       reader.readAsBinaryString(file);
