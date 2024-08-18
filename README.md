@@ -1,10 +1,10 @@
 # green up
 ### 탄소 인벤토리 기반 탄소 배출 감축 컨설팅 AI 서비스 
 
+![greenup 로고](https://github.com/user-attachments/assets/988463c0-0289-4333-9dcc-6ed9893138e5)
 
-<img src = "./images/logo.png" width="80%" height="80%">
-![project record](./images/final_record.gif)
 
+<
 # 목차
 1. [프로젝트 소개](#프로젝트-소개)
 2. [green up 웹 페이지 기능](#green-up-웹-페이지-기능)
