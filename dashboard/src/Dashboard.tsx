@@ -102,11 +102,11 @@ const Dashboard: React.FC = () => {
                 // 카테고리 데이터 설정
                 const latestTotal = totalEmissions[latestIndex];
                 setCategoryData([
-                    { name: 'Fixed Combustion', value: `${fixedCombustion[latestIndex].toFixed(1)} tCO2e (${((fixedCombustion[latestIndex] / latestTotal) * 100).toFixed(1)}%)` },
-                    { name: 'Mobile Combustion', value: `${mobileCombustion[latestIndex].toFixed(1)} tCO2e (${((mobileCombustion[latestIndex] / latestTotal) * 100).toFixed(1)}%)` },
-                    { name: 'Process Emissions', value: `${processEmissions[latestIndex].toFixed(1)} tCO2e (${((processEmissions[latestIndex] / latestTotal) * 100).toFixed(1)}%)` },
-                    { name: 'Electricity', value: `${electricity[latestIndex].toFixed(1)} tCO2e (${((electricity[latestIndex] / latestTotal) * 100).toFixed(1)}%)` },
-                    { name: 'Steam', value: `${steam[latestIndex].toFixed(1)} tCO2e (${((steam[latestIndex] / latestTotal) * 100).toFixed(1)}%)` },
+                    { name: 'Fixed Combustion', value: `${fixedCombustion[latestIndex]} tCO2e (${((fixedCombustion[latestIndex] / latestTotal) * 100).toFixed(1)}%)` },
+                    { name: 'Mobile Combustion', value: `${mobileCombustion[latestIndex]} tCO2e (${((mobileCombustion[latestIndex] / latestTotal) * 100).toFixed(1)}%)` },
+                    { name: 'Process Emissions', value: `${processEmissions[latestIndex]} tCO2e (${((processEmissions[latestIndex] / latestTotal) * 100).toFixed(1)}%)` },
+                    { name: 'Electricity', value: `${electricity[latestIndex]} tCO2e (${((electricity[latestIndex] / latestTotal) * 100).toFixed(1)}%)` },
+                    { name: 'Steam', value: `${steam[latestIndex]} tCO2e (${((steam[latestIndex] / latestTotal) * 100).toFixed(1)}%)` },
                 ]);
 
                 // 총 배출량 설정
@@ -120,11 +120,6 @@ const Dashboard: React.FC = () => {
         reader.readAsBinaryString(file);
     }
 };
-
-
-
-
-
 
   return (
       <div style={{ padding: '20px' }}>
