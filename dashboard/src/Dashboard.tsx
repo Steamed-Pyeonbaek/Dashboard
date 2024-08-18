@@ -152,17 +152,28 @@ const Dashboard: React.FC = () => {
   
         <div style={{ display: 'flex', gap: '20px' }}>
           <div style={{ width: '50%' }}>
-            <Pie
-              data={pieData}
-              options={{
-                responsive: true,
-                plugins: {
-                  legend: {
-                    position: 'right',
-                  },
-                },
-              }}
-            />
+          <Pie
+          data={pieData}
+          options={{
+            responsive: true,
+            plugins: {
+              legend: {
+                position: 'right',
+              },
+              tooltip: {
+                callbacks: {
+                  label: function (tooltipItem) {
+                    const dataset = tooltipItem.dataset;
+                    const total = dataset.data.reduce((acc, curr) => acc + curr, 0);
+                    const value = dataset.data[tooltipItem.dataIndex];
+                    const percentage = ((value / total) * 100).toFixed(2);
+                    return `${[tooltipItem.dataIndex+1]}: ${value.toLocaleString()} tCO2e (${percentage}%)`;
+          }
+        }
+      }
+    },
+  }}
+/>
           </div>
           <div style={{ width: '50%' }}>
             <h3>Annual Carbon Emissions Statistics</h3>
