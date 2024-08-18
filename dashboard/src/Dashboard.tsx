@@ -1,6 +1,8 @@
 // src/Dashboard.tsx
 import React, { useState } from "react";
 import * as XLSX from "xlsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFileDownload } from "@fortawesome/free-solid-svg-icons";
 import { Pie, Bar } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
 // import { calculateNewValue } from "@testing-library/user-event/dist/utils";
@@ -102,11 +104,11 @@ const Dashboard: React.FC = () => {
                 // 카테고리 데이터 설정
                 const latestTotal = totalEmissions[latestIndex];
                 setCategoryData([
-                    { name: 'Fixed Combustion', value: `${fixedCombustion[latestIndex]} tCO2e (${((fixedCombustion[latestIndex] / latestTotal) * 100).toFixed(1)}%)` },
-                    { name: 'Mobile Combustion', value: `${mobileCombustion[latestIndex]} tCO2e (${((mobileCombustion[latestIndex] / latestTotal) * 100).toFixed(1)}%)` },
-                    { name: 'Process Emissions', value: `${processEmissions[latestIndex]} tCO2e (${((processEmissions[latestIndex] / latestTotal) * 100).toFixed(1)}%)` },
-                    { name: 'Electricity', value: `${electricity[latestIndex]} tCO2e (${((electricity[latestIndex] / latestTotal) * 100).toFixed(1)}%)` },
-                    { name: 'Steam', value: `${steam[latestIndex]} tCO2e (${((steam[latestIndex] / latestTotal) * 100).toFixed(1)}%)` },
+                    { name: 'Fixed Combustion', value: `${fixedCombustion[latestIndex].toFixed(1)} tCO2e (${((fixedCombustion[latestIndex] / latestTotal) * 100).toFixed(1)}%)` },
+                    { name: 'Mobile Combustion', value: `${mobileCombustion[latestIndex].toFixed(1)} tCO2e (${((mobileCombustion[latestIndex] / latestTotal) * 100).toFixed(1)}%)` },
+                    { name: 'Process Emissions', value: `${processEmissions[latestIndex].toFixed(1)} tCO2e (${((processEmissions[latestIndex] / latestTotal) * 100).toFixed(1)}%)` },
+                    { name: 'Electricity', value: `${electricity[latestIndex].toFixed(1)} tCO2e (${((electricity[latestIndex] / latestTotal) * 100).toFixed(1)}%)` },
+                    { name: 'Steam', value: `${steam[latestIndex].toFixed(1)} tCO2e (${((steam[latestIndex] / latestTotal) * 100).toFixed(1)}%)` },
                 ]);
 
                 // 총 배출량 설정
@@ -121,73 +123,85 @@ const Dashboard: React.FC = () => {
     }
 };
 
-  return (
-      <div style={{ padding: '20px' }}>
-        <h1 style={{ fontSize: "24px" }}>탄소 배출량 대시보드</h1>
-        <a href="/sample.xlsx" download>
-          예시 엑셀 파일 다운로드
-        </a>
-        <p>위 형식에 맞춰 엑셀 파일을 작성한 후 업로드하세요.</p>
-        <input type="file" accept=".xlsx,.xls" onChange={handleFileChange} />
-  
-        { totalEmissions.length > 0 && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', marginTop: '20px' }}>
-            <div>
-              <h2>Total Carbon Emissions</h2>
-              <h1>{totalEmissions.toLocaleString()} tCO2e</h1>
-            </div>
-          
-          <div style={{ display: 'flex', gap: '20px' }}>
-            <div style={{ width: '50%' }}>
-              <Pie
-                data={pieData}
-                options={{
-                  responsive: true,
-                  plugins: {
-                    legend: {
-                      position: 'right',
-                    },
-                  },
-                }}
-              />
-            </div>
-            <div style={{ width: '50%' }}>
-              <h3>Annual Carbon Emissions Statistics</h3>
-              <p>Current reduction rate of 34%</p>
-              <p>Cut by 60% by 2030</p>
-              <Bar
-                data={barData}
-                options={{
-                  responsive: true,
-                  scales: {
-                    y: {
-                      beginAtZero: true,
-                    },
-                  },
-                  plugins: {
-                    legend: {
-                      display: false,
-                    },
-                  },
-                }}
-              />
-            </div>
-          </div>
 
-          <div>
-            <h3>Category</h3>
-            <ul style={{ listStyle: 'none', padding: 0 }}>
-              {categoryData.map((item: any, index: number) => (
-                <li key={index} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
-                  <span>{item.name}</span>
-                  <span>{item.value}</span>
-                </li>
-              ))}
-            </ul>
+  return (
+    <div style={{ padding: '20px' }}>
+    <h1 style={{ fontSize: "24px" }}>Carbon Emissions Dashboard</h1>
+    <a href="/sample.xlsx" download>
+    <FontAwesomeIcon 
+            icon={faFileDownload} 
+            size="2x" 
+            style={{
+              padding: '10px',
+              borderRadius: '50%',
+              backgroundColor: '#ffffff',
+              color: '#666666',
+              cursor: 'pointer'
+            }} 
+          />
+    </a>
+    <p>Please fill out the Excel file according to the format above and upload it.</p>
+    <input type="file" accept=".xlsx,.xls" onChange={handleFileChange} />
+  
+    {totalEmissions.length > 0 && (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', marginTop: '20px' }}>
+        <div style={{ textAlign: 'left' }}>
+          <h3>Total Carbon Emissions</h3>
+          <h2>{totalEmissions.toLocaleString()} tCO2e</h2>
+        </div>
+  
+        <div style={{ display: 'flex', gap: '20px' }}>
+          <div style={{ width: '50%' }}>
+            <Pie
+              data={pieData}
+              options={{
+                responsive: true,
+                plugins: {
+                  legend: {
+                    position: 'right',
+                  },
+                },
+              }}
+            />
+          </div>
+          <div style={{ width: '50%' }}>
+            <h3>Annual Carbon Emissions Statistics</h3>
+            <p>Current reduction rate of 34%</p>
+            <p>Cut by 60% by 2030</p>
+            <Bar
+              data={barData}
+              options={{
+                responsive: true,
+                scales: {
+                  y: {
+                    beginAtZero: true,
+                  },
+                },
+                plugins: {
+                  legend: {
+                    display: false,
+                  },
+                },
+              }}
+            />
           </div>
         </div>
-      )}
-    </div>
+  
+        <div>
+          <h3>Category</h3>
+          <ul style={{ listStyle: 'none', padding: 0 }}>
+            {categoryData.map((item: any, index: number) => (
+              <li key={index} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
+                <span>{item.name}</span>
+                <span>{item.value}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    )}
+  </div>
+  
   );
 };
 
