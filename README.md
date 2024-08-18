@@ -77,7 +77,10 @@ GreenUp의 웹 페이지는 사용자가 탄소 배출 데이터를 입력하고
 ## 시연영상
 
 
-Uploading 시연영상.mp4…
+
+https://github.com/user-attachments/assets/e2c7b4a5-7cb9-45b8-92ff-70756df3150b
+
+
 
 
 
