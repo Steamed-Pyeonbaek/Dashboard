@@ -38,6 +38,10 @@ GreenUp의 웹 페이지는 사용자가 탄소 배출 데이터를 입력하고
 
 ## 추후 개발 방향
 
+- ai chat 페이지와 dashboard 페이지 연결 작업 (ai chat 처음 실행 시 엑셀 양식과 서비스 설명을 주는 방향으로 개발)
+ ![Desktop(16_9)](https://github.com/user-attachments/assets/da084e7c-90dc-419d-866b-8dc7fe5e69d2)
+
+-
 
 
 
