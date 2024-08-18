@@ -62,9 +62,10 @@ GreenUp의 웹 페이지는 사용자가 탄소 배출 데이터를 입력하고
 
 
 ## 팀원 구성 및 역할
-| [<img src="https://github.com/Drizzle03.png" width="100px">]((https://github.com/Drizzle03)) | [<img src="(https://github.com/seulnan).png" width="100px">](https://github.com/seulnan) | [<img src="https://github.com/junekyu02.png" width="100px">](https://github.com/junekyu02) | [<img src="깃허브주소.png" width="100px">](https://github.com/jakepro657) |  
-| :--------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------:
-|[편유나](https://github.com/Drizzle03)|[김난슬](https://github.com/seulnan)|[백준규](https://github.com/junekyu02)|[김유빈](https://github.com/jakepro657)|
-|PM <br> design |Frontend |Backend |AI |
+
+| [<img src="https://github.com/Drizzle03.png" width="100px">](https://github.com/Drizzle03) | [<img src="https://github.com/seulnan.png" width="100px">](https://github.com/seulnan) | [<img src="https://github.com/junekyu02.png" width="100px">](https://github.com/junekyu02) | [<img src="https://github.com/jakepro657.png" width="100px">](https://github.com/jakepro657) |
+| :--------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------: |
+| [편유나](https://github.com/Drizzle03) | [김난슬](https://github.com/seulnan) | [백준규](https://github.com/junekyu02) | [김유빈](https://github.com/jakepro657) |
+| PM <br> Design | Frontend | Backend | AI |
 
 
