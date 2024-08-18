@@ -104,11 +104,11 @@ const Dashboard: React.FC = () => {
                 // 카테고리 데이터 설정
                 const latestTotal = totalEmissions[latestIndex];
                 setCategoryData([
-                    { name: 'Fixed Combustion', value: `${fixedCombustion[latestIndex].toFixed(1)} tCO2e (${((fixedCombustion[latestIndex] / latestTotal) * 100).toFixed(1)}%)` },
-                    { name: 'Mobile Combustion', value: `${mobileCombustion[latestIndex].toFixed(1)} tCO2e (${((mobileCombustion[latestIndex] / latestTotal) * 100).toFixed(1)}%)` },
-                    { name: 'Process Emissions', value: `${processEmissions[latestIndex].toFixed(1)} tCO2e (${((processEmissions[latestIndex] / latestTotal) * 100).toFixed(1)}%)` },
-                    { name: 'Electricity', value: `${electricity[latestIndex].toFixed(1)} tCO2e (${((electricity[latestIndex] / latestTotal) * 100).toFixed(1)}%)` },
-                    { name: 'Steam', value: `${steam[latestIndex].toFixed(1)} tCO2e (${((steam[latestIndex] / latestTotal) * 100).toFixed(1)}%)` },
+                    { name: 'Fixed Combustion', value: `${fixedCombustion[latestIndex]} tCO2e (${((fixedCombustion[latestIndex] / latestTotal) * 100).toFixed(1)}%)` },
+                    { name: 'Mobile Combustion', value: `${mobileCombustion[latestIndex]} tCO2e (${((mobileCombustion[latestIndex] / latestTotal) * 100).toFixed(1)}%)` },
+                    { name: 'Process Emissions', value: `${processEmissions[latestIndex]} tCO2e (${((processEmissions[latestIndex] / latestTotal) * 100).toFixed(1)}%)` },
+                    { name: 'Electricity', value: `${electricity[latestIndex]} tCO2e (${((electricity[latestIndex] / latestTotal) * 100).toFixed(1)}%)` },
+                    { name: 'Steam', value: `${steam[latestIndex]} tCO2e (${((steam[latestIndex] / latestTotal) * 100).toFixed(1)}%)` },
                 ]);
 
                 // 총 배출량 설정
@@ -151,7 +151,7 @@ const Dashboard: React.FC = () => {
         </div>
   
         <div style={{ display: 'flex', gap: '20px' }}>
-          <div style={{ width: '50%' }}>
+          <div style={{ width: '30%' }}>
           <Pie
           data={pieData}
           options={{
@@ -175,7 +175,7 @@ const Dashboard: React.FC = () => {
   }}
 />
           </div>
-          <div style={{ width: '50%' }}>
+          <div style={{ width: '30%' }}>
             <h3>Annual Carbon Emissions Statistics</h3>
             <p>Current reduction rate of 34%</p>
             <p>Cut by 60% by 2030</p>
