@@ -36,10 +36,10 @@ After analyzing the data provided by the user via an uploaded Excel file, the AI
 
 ## Future Development Directions
 
--Connect AI Chat Page to Dashboard Page
--DashBoard Data-Based Report Generation (PDF)
--Reflect dashboard data LLM
--SBTi-based Target Emissions Recommendation and Setting System
+-Connect AI Chat Page to Dashboard Page<br/> 
+-DashBoard Data-Based Report Generation (PDF)<br/> 
+-Reflect dashboard data LLM<br/> 
+-SBTi-based Target Emissions Recommendation and Setting System<br/> 
 -Automatically build inventory linked to open banking API
 
 
