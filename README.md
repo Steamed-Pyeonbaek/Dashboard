@@ -52,16 +52,16 @@ After analyzing the data provided by the user via an uploaded Excel file, the AI
 
 ### 1. Install green up
 
-'''git clone https://github.com/your-repo/greenup.git
+```git clone https://github.com/your-repo/greenup.git
 cd greenup
-'''
+```
 
 
 ### 2. Run green up
 
-'''npm install
+```npm install
 npm start
-'''
+```
 
 
 Once the server is running, you can open the green up web page in your browser by navigating to http://localhost:3000.
