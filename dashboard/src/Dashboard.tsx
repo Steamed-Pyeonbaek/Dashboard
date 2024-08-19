@@ -80,7 +80,7 @@ const Dashboard: React.FC = () => {
                     }
                 });
 
-                // 가장 최근 년도의 데이터
+                // 최근 년도의 데이터
                 const latestIndex = years.length - 1;
 
                 // 원형 차트 데이터 설정
@@ -150,6 +150,7 @@ const Dashboard: React.FC = () => {
           <h2>{totalEmissions.toLocaleString()} tCO2e</h2>
         </div>
   
+
         <div style={{ display: 'flex', gap: '20px' }}>
           <div style={{ width: '30%' }}>
           <Pie
