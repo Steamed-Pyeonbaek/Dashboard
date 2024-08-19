@@ -68,7 +68,11 @@ Once the server is running, you can open the green up web page in your browser b
 
 ## Demo Video
 
-https://github.com/user-attachments/assets/88d45e6b-e065-4e74-ba61-eb13f9c55ad7
+
+
+https://github.com/user-attachments/assets/c11e7d4f-602b-4324-b117-3aa475d043f4
+
+
 
 
 ## Team Members and Roles
