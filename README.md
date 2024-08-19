@@ -1,94 +1,78 @@
 # green up
-### 탄소 인벤토리 기반 탄소 배출 감축 컨설팅 AI 서비스 
+### Carbon Emission Reduction Consulting AI Service Based on Carbon Inventory
 
-![greenup 로고](https://github.com/user-attachments/assets/988463c0-0289-4333-9dcc-6ed9893138e5)
+![greenup Logo](https://github.com/user-attachments/assets/988463c0-0289-4333-9dcc-6ed9893138e5)
 
-최근 탄소 배출 저감과 환경 보호에 대한 관심이 높아지면서, 기업과 개인 모두에게 정확한 탄소 배출량 관리와 효율적인 저감 전략이 요구되고 있습니다. 
+With the growing interest in reducing carbon emissions and protecting the environment, accurate management of carbon emissions and effective reduction strategies are required for both businesses and individuals.
 
-green up은 급격하게 증가하는 탄소 중립과 ESG(환경, 사회, 지배구조) 경영에 대한 요구를 반영하여, 중소기업(SME)들이 탄소 배출량을 체계적으로 관리하고 효과적인 감축 계획을 수립할 수 있도록 지원합니다.
+green up reflects the rapidly increasing demand for carbon neutrality and ESG (Environmental, Social, and Governance) management, supporting SMEs (Small and Medium-sized Enterprises) in systematically managing their carbon emissions and establishing effective reduction plans.
 
-사용자가 제공하는 탄소 배출량 데이터를 바탕으로, 탄소 인벤토리를 작성하고 그에 따른 감축 방안을 제안하는 **대시보드와 Solar LLM을 통한 AI 컨설팅 기능**을 제공합니다. green up를 통해 ESG의 복잡한 과제들을 직면한 중소기업에게 도움을 제공할 수 있습니다.
+Based on the carbon emission data provided by users, green up creates a carbon inventory and proposes reduction measures through **a dashboard and AI consulting feature using Solar LLM**. green up aims to help SMEs facing complex ESG challenges.
 
+# Table of Contents
+1. [Current Development Status](#current-development-status)
+    1. [Dashboard Page](#dashboard-page)
+2. [Future Development Directions](#future-development-directions)
+3. [Technology Stack](#technology-stack)
+4. [How to Use green up](#how-to-use-green-up)
+    1. [Install green up](#install-green-up)
+    2. [Run green up](#run-green-up)
+5. [Demo Video](#demo-video)
+6. [Team Members and Roles](#team-members-and-roles)
 
-# 목차
-1. [현재 개발 상황](#현재-개발-상황)
-    1. [Dashboard 페이지](#Dashboard-페이지)
-2. [추후 개발 방향](#추후-개발-방향)
-3. [green up 사용법](#green-up-사용법)
-    1. [green up 설치](#green-up-설치)
-    2. [green up 실행](#green-up-실행)
-4. [시연영상](#시연영상)
-5. [팀원 구성 및 역할](#팀원-구성-및-역할)
+## Current Development Status
 
+Currently, both the **AI Chat Page** and the **Dashboard Page** have been implemented. Essential features for each page have been completed. Future development will involve adding detailed features to the **Dashboard Page** and refactoring to ensure smooth integration with the **AI Chat Page**.
 
+### 1. Dashboard Page
 
+After analyzing the data provided by the user via an uploaded Excel file, the AI directs the user to the dashboard page to visually confirm the analysis results. The dashboard page offers the following features:
 
+1. Total Carbon Emissions: Displays the total carbon emissions calculated from the uploaded data. This value sums all emissions within the Scope 1, 2, and 3 categories.
+2. Pie Chart: Visually shows emissions within Scope 1, 2, and 3. Scope 1 includes direct emissions from stationary combustion, mobile combustion, and process emissions. Scope 2 includes indirect emissions from electricity and steam use.
+3. Bar Chart: Visualizes the change in total annual carbon emissions. This helps users easily understand the trend of carbon emissions over time.
+4. Emissions by Category: Provides detailed emissions for each category, such as stationary combustion, mobile combustion, process emissions, electricity use, and steam use. Each item is displayed in tCO2e (tonnes of CO2 equivalent).
+5. PDF Report Download: Allows users to download the analysis results in PDF format.
 
-## 현재 개발 상황
+## Future Development Directions
 
-현재 **AI Chat 페이지**와 **대시보드 페이지**는 각각 구현 완료되었습니다. 각 페이지에 대한 필수 기능은 구현을 완료한 상태입니다.
-추후 개발로 **대시보드 페이지**의 세부 기능을 추가하고, **AI Chat 페이지**와의 원활한 연동을 위해 리팩토링 작업을 진행할 계획입니다.
+- Linking the AI Chat Page and Dashboard Page (Developing the initial AI chat to provide Excel templates and service explanations)
+- PDF download of the dashboard (report format)
+- Setting target emissions and visualizing how much has been reduced or exceeded compared to the target
 
+## Technology Stack
 
-#### 1. Dashboard 페이지
+- **React**
+- **TypeScript**
 
-ai chat페이지 사용자가 업로드한 엑셀 파일을 통해 AI가 데이터를 분석한 후, 대시보드 페이지로 이동하여 분석 결과를 시각적으로 확인할 수 있습니다. 대시보드 페이지는 아래와 같은 기능을 제공합니다.
+## How to Use green up
 
-1. 총 탄소 배출량: 업로드된 데이터에서 계산된 총 탄소 배출량을 표시합니다. 이 값은 Scope 1, 2, 3 범위에서의 모든 배출량을 합산한 결과입니다.
-2. 원형 차트 : Scope 1, 2, 3 범위의 배출량을 시각적으로 보여줍니다. Scope 1은 고정 연소와 이동 연소, 공정 배출 등 직접 배출을 포함하며, Scope 2는 전기 및 증기 사용으로 인한 간접 배출을 포함합니다.
-3. 막대 차트 : 연도별 총 탄소 배출량 변화를 막대 차트로 시각화합니다. 이를 통해 사용자는 시간에 따른 탄소 배출량의 추이를 쉽게 파악할 수 있습니다.
-4. 카테고리별 배출량: 고정 연소, 이동 연소, 공정 배출, 전기 사용, 증기 사용 등 각 카테고리별로 상세한 배출량을 제공합니다. 각 항목은 tCO2e (톤 CO2 환산량) 단위로 표시됩니다.
-5. PDF 리포트 다운로드: 분석 결과를 PDF 형식으로 다운로드할 수 있는 기능을 제공합니다. 
+### 1. Install green up
 
-
-
-## 추후 개발 방향
-
-- ai chat 페이지와 dashboard 페이지 연결 작업 (ai chat 처음 실행 시 엑셀 양식과 서비스 설명을 주는 방향으로 개발)
-- 대시보드 pdf 다운로드(리포트 형식)
-- 목표 배출량 설정 후 얼마나 절감/오버 했는지 비교 & 시각화 기능
-
-
-
-
-## green up 사용법
-1. green up 설치    
-
-   ```
-   git clone https://github.com/your-repo/greenup.git  
-   cd greenup  
-   ```
-
-3. green up 실행
-   
-    ```
-   npm install
-   npm start
-
-    ```
-  서버가 실행되면, 브라우저에서 http://localhost:3000을 열어 greenUp 웹 페이지에 접속할 수 있습니다.
+'''
+git clone https://github.com/your-repo/greenup.git
+cd greenup
+'''
 
 
+### 2. Run green up
+
+'''
+npm install
+npm start
+'''
 
 
-## 시연영상
+Once the server is running, you can open the green up web page in your browser by navigating to http://localhost:3000.
 
-
-
+## Demo Video
 
 https://github.com/user-attachments/assets/88d45e6b-e065-4e74-ba61-eb13f9c55ad7
 
 
-
-
-
-
-
-## 팀원 구성 및 역할
+## Team Members and Roles
 
 | [<img src="https://github.com/Drizzle03.png" width="100px">](https://github.com/Drizzle03) | [<img src="https://github.com/seulnan.png" width="100px">](https://github.com/seulnan) | [<img src="https://github.com/junekyu02.png" width="100px">](https://github.com/junekyu02) | [<img src="https://github.com/jakepro657.png" width="100px">](https://github.com/jakepro657) |
 | :--------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------: |
-| [편유나](https://github.com/Drizzle03) | [김난슬](https://github.com/seulnan) | [백준규](https://github.com/junekyu02) | [김유빈](https://github.com/jakepro657) |
+| [Yuna Pyeon](https://github.com/Drizzle03) | [Nansel Kim](https://github.com/seulnan) | [Junkyoo Baek](https://github.com/junekyu02) | [Youbin Kim](https://github.com/jakepro657) |
 | PM <br> Design | Frontend | Backend | AI |
-
-
